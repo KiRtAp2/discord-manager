@@ -35,6 +35,14 @@ async def on_message(msg):
 
 
 @client.event
+async def on_message_edit(before, after):
+    if before.author == after.author:
+        fmt = "SCUM! {author} edited their message: '{before}' to '{after}'"
+        await client.send_message(after.channel,
+                                  fmt.format(author=after.author, before=before.content, after=after.content))
+
+
+@client.event
 async def on_ready():
     print("Logged in")
     logger.info("Up and running!")
