@@ -1,0 +1,2 @@
+COMMANDS:
+?help - Shows this help text
