@@ -1,9 +1,10 @@
 import logging
-import time
+import datetime
 
 botLogger = None
 FORMAT = '%(levelname)s at %(asctime)s: %(message)s'
-FILENAME = 'logs/log'+time.ctime(None)+'.log'
+RUNNING_TIME = datetime.datetime.now().strftime('%d_%m_%Y__%H_%M_%S_%f')
+FILENAME = 'logs/log'+RUNNING_TIME+'.log'
 FILEMODE = 'w'
 
 

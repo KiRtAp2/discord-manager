@@ -1,19 +1,28 @@
-import logging
+from logging import DEBUG as LOGGING_DEBUG
 import sys
 import re
 import logger
 import discord
 
 
+logger.init(level=LOGGING_DEBUG)
+
+
 client = discord.Client()
 TOKEN = sys.argv[1]  # gets token from command line
-
-# if TOKEN looks like a filename, read the file and overwtite TOKEN with the contents
-# I'm not commiting any tokens to github again
-if re.match(r'^/?([a-zA-Z0-9]+/)*[a-zA-Z0-9]+\.[a-zA-Z0-9]+', TOKEN):
-    with open(TOKEN, 'r') as f:
-        TOKEN = f.read()
+# I'm not commiting it again
 
 
-if __name__ == '__main__':
-    logger.init(level=logging.DEBUG)
+@client.event
+async def on_message(msg):
+
+    if msg.author==client.user:
+        return
+
+
+@client.event
+async def on_ready():
+    print("Logged in")
+    logger.info("Up and running!")
+
+client.run(TOKEN)
